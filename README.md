@@ -15,3 +15,34 @@ Single cell bioinformatics pipeline
                Support: jtremblay514@gmail.com
              Home page: github.com/jtremblay/SingleCell
 ```
+
+## Background
+This is a simple pipeline to process single cell sequencing libraries of the 10X genomics type. 
+Briefly, each library has to be demultiplexed so that we have one set of R1 and R2 fastqs per library.
+Then reads 3' reads (i.e. .R2) are mapped (STAR aligner) against the corresponding reference genome. 
+Reference genome has to be formatted before mapping the reads. For instance for the mouse genome, we'd have the following command:
+```
+module load STAR/2.7.10b
+STAR \
+    --runMode genomeGenerate \
+    --runThreadN 8 \
+    --genomeDir ./ \
+    --genomeFastaFiles ../refdata-gex-mm10-2020-A/fasta/genome.fa \
+    --sjdbGTFfile ../refdata-gex-mm10-2020-A/genes/genes.gtf
+```
+
+Then make sure that the singlecell.config file is all setup properly. For instance:
+```
+         raw_reads = "$projectDir/raw_reads/*_R{1,2}_001.fastq"
+         outdir = "$projectDir/output/"
+         ref_genome = "$INSTALL_HOME/databases/single_cell/refdata-gex-mm10-2020-A_alt"
+         whitelist = "$INSTALL_HOME/databases/single_cell/3M-february-2018.txt"
+```
+
+Nextflow can then be run:
+```
+module load nextflow/22.10.7.5853 java/17.0.2
+nextflow run -c ./singlecell.config ./singlecell.nf -resume
+```
+
+
