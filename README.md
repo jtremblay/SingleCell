@@ -55,5 +55,11 @@ nextflow run -c ./singlecell.config ./singlecell.nf -resume
 The results are located in the `./ouput/star/` folder. The important files are the .h5 files which contains the abundance of features (rows) x cells (columns).
 These files can be read for example using the `Seurat::Read10X_h5()` function (Seurat library).
 
+## Downstream analyses
+I've included a scrnaseq Seurat workflow as a quick example on how to get started. Will progressively add more parts in the near future:
+
+https://jtremblay.github.io/scrna_tutorial_part_1.html
+
+https://jtremblay.github.io/scrna_tutorial_part_2.html
 
 
