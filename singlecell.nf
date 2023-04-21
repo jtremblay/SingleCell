@@ -28,7 +28,7 @@ log.info """
   It is common to name processes with UPPERCASE strings, to make
   the program more readable
 */
-include { STAR } from './modules/singlecell'
+include { STAR; MTXTOHDF5 } from './modules/singlecell'
 //include { SUMMARIZE_TAXONOMY; BETA_DIVERSITY_BACTARCH; BETA_DIVERSITY_ALL; ALPHA_DIVERSITY_CONTIGS; ALPHA_DIVERSITY_GENES; ALPHA_DIVERSITY_RPOB; ALPHA_DIVERSITY_RECA } from './modules/microbial_ecology'
 raw_reads_channel = Channel.fromFilePairs(params.DEFAULT.raw_reads, checkIfExists:true)
 
@@ -38,6 +38,7 @@ workflow {
     */
     STAR(raw_reads_channel)
 
-    // If host/contaminant DNA is to be removed
+    MTXTOHDF5(STAR.out.mtx_files)
+
 }
 
