@@ -44,15 +44,16 @@ Then make sure that the singlecell.config file is all setup properly. For instan
          genome_info = "gencode_m10_GRCm38p4"
 ```
 
-## Results
-The results are located in the `./ouput/star/` folder. The important files are the .h5 files which contains the abundance of features (rows) x cells (columns).
-These files can be read for example using the `Seurat::Read10X_h5()` function (Seurat library).
-
 ## Execution
 Nextflow can then be run:
 ```
 module load nextflow/22.10.7.5853 java/17.0.2
 nextflow run -c ./singlecell.config ./singlecell.nf -resume
 ```
+
+## Results
+The results are located in the `./ouput/star/` folder. The important files are the .h5 files which contains the abundance of features (rows) x cells (columns).
+These files can be read for example using the `Seurat::Read10X_h5()` function (Seurat library).
+
 
 
