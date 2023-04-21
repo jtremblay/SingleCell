@@ -41,7 +41,7 @@ Then make sure that the singlecell.config file is all setup properly. For instan
          # at the end of the pipeline.
          gene_info = "$INSTALL_HOME/databases/single_cell/refdata-gex-mm10-2020-A_alt/geneInfo.tab"
          chemistry = "Chromium V3"
-         genome_info = "gencode_m10_GRCm38p4"
+         genome_info = "gex-mm10-2020-A"
 ```
 
 ## Execution
